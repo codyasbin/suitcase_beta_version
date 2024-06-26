@@ -7,9 +7,82 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:openDrawer="start"
-    android:background="#747474"
-    android:padding="8dp"
+    android:background="#D4D9EF"
     tools:context=".MainActivity">
+
+    <!-- Main content area -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:background="@color/blue"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/baseline_add_home_24" />
+
+            <!-- Existing widgets and layout here -->
+
+            <!-- Nested LinearLayout for additional content -->
+            <LinearLayout
+                android:id="@+id/bottom_content_layout"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+
+
+
+                app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+                <!-- Your suitcase is empty message -->
+                <TextView
+                    android:id="@+id/empty_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your suitcase is empty"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center"
+                    />
+
+                <!-- Add Item button -->
+                <Button
+                    android:id="@+id/add_item_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Add Item"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/white"
+
+                    android:backgroundTint="@color/blue"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:onClick="onAddItemClick"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <!-- Navigation drawer -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -17,31 +90,8 @@
         app:headerLayout="@layout/header"
         app:menu="@menu/main_manu"
         android:layout_gravity="start"
-        >
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#ffffff">
-                <androidx.appcompat.widget.Toolbar
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:background="#00008577"
-                    android:minHeight="?attr/actionBarSize"
-                    android:theme="?attr/actionBarTheme"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:navigationIcon="@drawable/baseline_add_home_24"/>
+        android:background="#4960DC"
+        />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </ScrollView>
-
-    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

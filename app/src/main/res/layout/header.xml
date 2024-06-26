@@ -2,65 +2,42 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:padding="20dp"
-    android:background="#686363"
+    android:layout_height="wrap_content"
+    android:paddingTop="40dp"
+    android:paddingBottom="20dp"
+    android:paddingLeft="10dp"
+
+    android:background="@color/blue"
     android:orientation="vertical">
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_gravity="left"
+
         >
+
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/img"
-            />
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/suitcase"
+            android:layout_gravity="center"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
 
-            android:text="Sutcase"
+            android:text="Suitcase"
             android:textColor="@color/white"
-            android:textSize="32sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
     </LinearLayout>
 
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="www.suitcase.com.np"
-        android:layout_gravity="center"
-        android:textColor="@color/white"
-        android:textSize="22sp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/fb"
-            android:layout_marginEnd="20dp"
-            />
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/fb"
-            android:layout_marginEnd="20dp"
-            />
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/fb"
-            />
 
-    </LinearLayout>
 
 
 </LinearLayout>

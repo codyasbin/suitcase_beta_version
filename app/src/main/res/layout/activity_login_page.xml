@@ -7,26 +7,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#CDC9CD"
     android:padding="16dp"
+    android:background="@color/blue"
     android:gravity="center"
     tools:context=".Login_Page">
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign to your Account"
+        android:textStyle="bold"
+
+        android:textSize="28sp"
+        android:textColor="@color/white"
+        />
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:focusable="true">
 
+
         <EditText
             android:id="@+id/login_email"
-            android:layout_width="match_parent"
+            android:layout_width="350sp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/rounded_edittext"
             android:layout_height="wrap_content"
             android:hint="Enter Email "
             android:textSize="22sp"
-
-            android:background="@color/white"
             android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -38,31 +48,26 @@
 
         <EditText
             android:id="@+id/login_password"
-            android:layout_width="match_parent"
+            android:layout_width="350sp"
+            android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:hint="Enter Password "
             android:textSize="22sp"
 
-            android:background="@color/white"
+            android:background="@drawable/rounded_edittext"
             android:inputType="numberPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/login_btn"
-        android:layout_width="match_parent"
+        android:layout_width="350sp"
         android:layout_height="70dp"
         android:layout_marginTop="30dp"
         android:text="Sign In"
+
+        android:backgroundTint="#031471"
         android:textSize="20sp"/>
-    <TextView
-        android:id="@+id/forgot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forgot Password"
-        android:textColor="#F80423"
-        android:textSize="32sp"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,7 +78,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="you don't have a/c ?"
+            android:text="Don't have account ?"
             android:textSize="22sp"
             android:textColor="@color/white"
             />
@@ -81,8 +86,20 @@
             android:id="@+id/signup_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="Signup "
             android:textSize="22sp"
-            android:textColor="#0963F8"/>
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
     </LinearLayout>
+    <TextView
+        android:id="@+id/forgot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password ?"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        />
 </LinearLayout>

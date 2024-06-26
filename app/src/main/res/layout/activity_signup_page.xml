@@ -7,12 +7,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#CDC9CD"
+    android:background="#0E4F9B"
     android:padding="16dp"
     android:gravity="center"
     tools:context=".Signup_Page">
 
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create a new Account "
+        android:textSize="28sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,16 +28,17 @@
 
         <EditText
             android:id="@+id/sigunp_email"
-            android:layout_width="match_parent"
+            android:layout_width="350sp"
+            android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:hint="Enter Email "
             android:textSize="22sp"
-
-            android:background="@color/white"
+            android:background="@drawable/rounded_edittext"
+            android:padding="10dp"
             android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
+        android:layout_width="350sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:focusable="true"
@@ -38,12 +46,13 @@
 
         <EditText
             android:id="@+id/sigunp_password"
-            android:layout_width="match_parent"
+            android:layout_width="350sp"
+            android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:hint="Enter Password "
             android:textSize="22sp"
-
-            android:background="@color/white"
+            android:background="@drawable/rounded_edittext"
+            android:padding="10dp"
             android:inputType="numberPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -54,22 +63,31 @@
 
         <EditText
             android:id="@+id/confirm_password"
-            android:layout_width="match_parent"
+            android:layout_width="350sp"
+            android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:hint="Enter Confirm Password "
             android:textSize="22sp"
-            
-            android:background="@color/white"
+            android:background="@drawable/rounded_edittext"
+            android:padding="10dp"
             android:inputType="numberPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
-<Button
-    android:id="@+id/signup_btn"
-    android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:layout_marginTop="30dp"
-    android:text="Signup"
-    android:textSize="20sp"/>
-   <LinearLayout
+
+    <Button
+        android:id="@+id/signup_btn"
+        android:layout_width="350sp"
+        android:layout_height="70dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#0D1E7E"
+        android:text="Signup"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+
+
+        />
+
+    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="horizontal"
@@ -79,7 +97,7 @@
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:text="already signup "
+           android:text="Already have a account? "
            android:textSize="22sp"
            android:textColor="@color/white"
            />
@@ -89,6 +107,7 @@
            android:layout_height="wrap_content"
            android:text="Login "
            android:textSize="22sp"
-           android:textColor="#0963F8"/>
+           android:textStyle="bold"
+           android:textColor="@color/white"/>
    </LinearLayout>
 </LinearLayout>

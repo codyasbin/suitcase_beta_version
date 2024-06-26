@@ -21,10 +21,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Signup_Page extends AppCompatActivity {
-EditText email_signup,password_signup,confirmPassword_signup;
-Button btn_signup;
-TextView txt_signup;
-FirebaseAuth firebaseAuth;
+    EditText email_signup, password_signup, confirmPassword_signup;
+    Button btn_signup;
+    TextView txt_login;
+    FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,46 +36,55 @@ FirebaseAuth firebaseAuth;
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        email_signup=findViewById(R.id.sigunp_email);
-        password_signup=findViewById(R.id.sigunp_password);
-        confirmPassword_signup=findViewById(R.id.confirm_password);
-        btn_signup=findViewById(R.id.signup_btn);
-        txt_signup=findViewById(R.id.login_txt);
 
-        firebaseAuth=FirebaseAuth.getInstance();
+        email_signup = findViewById(R.id.sigunp_email);
+        password_signup = findViewById(R.id.sigunp_password);
+        confirmPassword_signup = findViewById(R.id.confirm_password);
+        btn_signup = findViewById(R.id.signup_btn);
+        txt_login = findViewById(R.id.login_txt);
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email=email_signup.getText().toString().trim();
-                String password=password_signup.getText().toString().trim();
-                String cPassword=confirmPassword_signup.getText().toString().trim();
+                String email = email_signup.getText().toString().trim();
+                String password = password_signup.getText().toString().trim();
+                String cPassword = confirmPassword_signup.getText().toString().trim();
 
-                if (email.isEmpty()){
+                if (email.isEmpty()) {
                     Toast.makeText(Signup_Page.this, "Please Enter Email First", Toast.LENGTH_SHORT).show();
                 }
-                if (password.isEmpty()){
+                if (password.isEmpty()) {
                     Toast.makeText(Signup_Page.this, "Please Enter Password", Toast.LENGTH_SHORT).show();
                 }
-                if (cPassword.isEmpty()){
+                if (cPassword.isEmpty()) {
                     Toast.makeText(Signup_Page.this, "Please Enter Confirm Password", Toast.LENGTH_SHORT).show();
                 }
-                if (password.equals(cPassword)){
-                    firebaseAuth.createUserWithEmailAndPassword(email,password)
+                if (password.equals(cPassword)) {
+                    firebaseAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
-                                Intent intent=new Intent(getApplicationContext(),Login_Page.class);
-                                startActivity(intent);
-                                Toast.makeText(Signup_Page.this, "Signp Complete", Toast.LENGTH_SHORT).show();
-                                finish();
-                            }else {
-                                Toast.makeText(Signup_Page.this, "Signup Not Complete", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        Intent intent = new Intent(getApplicationContext(), Login_Page.class);
+                                        startActivity(intent);
+                                        Toast.makeText(Signup_Page.this, "Signup Complete", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    } else {
+                                        Toast.makeText(Signup_Page.this, "Signup Not Complete", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                 }
+            }
+        });
+
+        txt_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Signup_Page.this, Login_Page.class);
+                startActivity(intent);
             }
         });
     }

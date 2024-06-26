@@ -6,26 +6,45 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp"
-    android:background="#98918B"
+    android:orientation="horizontal"
+
+    android:background="@drawable/splashscreenbg"
     android:gravity="center"
-    tools:context=".Splash_Screen">
+    tools:context=".Splash_Screen"
+    >
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="#B2231818"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/splash_img"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/facce"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/suitaselogo"
+        android:layout_gravity="center"
+
         />
     <TextView
         android:id="@+id/splash_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/arbutus"
-        android:text="Welcome my Application "
-        android:textColor="@color/white"
+        android:text="@string/splash_screen"
+        android:textColor="#F8E8E8"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginTop="20dp"/>
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
 </LinearLayout>
