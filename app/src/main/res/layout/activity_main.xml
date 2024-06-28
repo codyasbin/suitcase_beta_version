@@ -6,92 +6,72 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:openDrawer="start"
-    android:background="#D4D9EF"
-    tools:context=".MainActivity">
+    android:background="#F08C85"
+    tools:context=".MainActivity"
+    tools:openDrawer="start">
 
-    <!-- Main content area -->
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <!-- Scrollable part -->
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingTop="20dp"
-                android:background="@color/blue"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:navigationIcon="@drawable/baseline_add_home_24" />
-
-            <!-- Existing widgets and layout here -->
-
-            <!-- Nested LinearLayout for additional content -->
             <LinearLayout
-                android:id="@+id/bottom_content_layout"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="0dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-
-
-                app:layout_constraintTop_toBottomOf="@id/toolbar">
-
-                <!-- Your suitcase is empty message -->
-                <TextView
-                    android:id="@+id/empty_message"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/bottom_content_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Your suitcase is empty"
-                    android:textSize="18sp"
-                    android:textColor="@android:color/black"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_gravity="center"
-                    />
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp">
 
-                <!-- Add Item button -->
-                <Button
-                    android:id="@+id/add_item_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Add Item"
-                    android:textSize="18sp"
-                    android:textColor="@android:color/white"
+                    <TextView
+                        android:id="@+id/empty_message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Your suitcase is empty"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="center" />
 
-                    android:backgroundTint="@color/blue"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginStart="16dp"
-                    android:onClick="onAddItemClick"/>
-
+                    <Button
+                        android:id="@+id/add_item_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Add Item"
+                        android:textSize="18sp"
+                        android:textColor="@android:color/white"
+                        android:backgroundTint="#F44336"
+                        android:layout_gravity="center" />
+                </LinearLayout>
             </LinearLayout>
+        </ScrollView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Scrollable RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="16dp"
+            tools:listitem="@layout/item_card" />
+    </LinearLayout>
 
-    </ScrollView>
-
-    <!-- Navigation drawer -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:headerLayout="@layout/header"
-        app:menu="@menu/main_manu"
         android:layout_gravity="start"
-        android:background="#4960DC"
-        />
-
-
+        android:background="@color/white"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/main_manu" />
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -34,10 +34,10 @@ public class Splash_Screen extends AppCompatActivity {
         });
 
         imageView=findViewById(R.id.splash_img);
-        textView=findViewById(R.id.splash_txt);
+
      animation= AnimationUtils.loadAnimation(this,R.anim.animation);
      imageView.setAnimation(animation);
-     textView.setAnimation(animation);
+
 
      Thread thread=new Thread(new Runnable() {
          @Override

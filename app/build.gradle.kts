@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+   
     namespace = "com.example.suitcase2"
     compileSdk = 34
 
@@ -69,4 +70,6 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+    implementation ("androidx.recyclerview:recyclerview:1.2.1")
+
 }

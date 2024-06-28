@@ -5,103 +5,96 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteStatement;
-import android.util.Log;
-
-import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static String DB_NAME = "suitcase.db";
-    public static final String ITEMS_TABLE_NAME="Items";
-    public static final String Col1 = "id";
-    public static final String Col2 = "name";
-    public static final String Col3 = "description";
-    public static final String Col4 = "price";
-    public static final String Col5 = "image";
-    public static final String Col6 = "purchased";
 
-    public static final int DB_VERSION = 1;
+    private static final String DATABASE_NAME = "items.db";
+    private static final int DATABASE_VERSION = 1;
 
-    public DatabaseHelper(@Nullable Context context) {
-        super(context, DB_NAME, null, 1);
+    // Table Name
+    public static final String TABLE_NAME = "items";
+
+    // Table columns
+    public static final String COLUMN_ID = "_id";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_PRICE = "price";
+    public static final String COLUMN_DESCRIPTION = "description";
+    public static final String COLUMN_IMAGE = "image"; // New column for image
+    public static final String COLUMN_PURCHASED = "purchased"; // New column for purchase status
+
+    // Creating table query
+    private static final String TABLE_CREATE =
+            "CREATE TABLE " + TABLE_NAME + " (" +
+                    COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COLUMN_NAME + " TEXT, " +
+                    COLUMN_PRICE + " REAL, " +
+                    COLUMN_DESCRIPTION + " TEXT, " +
+                    COLUMN_IMAGE + " BLOB, " +
+                    COLUMN_PURCHASED + " INTEGER DEFAULT 0);"; // Default 0 means not purchased
+
+
+    public DatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String itemstableQuery = "CREATE TABLE " + ITEMS_TABLE_NAME + " (" +Col1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                Col2 + " TEXT NOT NULL, " +
-                Col3 + " TEXT NOT NULL, " +
-                Col4 + " TEXT NOT NULL, " +
-                Col5 + " TEXT NOT NULL, " +
-                Col6 + " INTEGER NOT NULL)"; // Fixed: Removed extra "TEXT" and added spaces
-
-        try {
-            db.execSQL(itemstableQuery); // Execute the query to create the table
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // Create the items table
+        db.execSQL(TABLE_CREATE);
     }
 
-     @Override
+    @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + ITEMS_TABLE_NAME);
+        // Drop the existing items table and recreate it if the database version changes
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
-    //insert items
-    public Boolean insertItems(String name,
-                               double price,
-                               String description,
-                               boolean purchased,
-                               String image){
-        SQLiteDatabase database = getWritableDatabase();
-        String sql = "INSERT INTO " + ITEMS_TABLE_NAME + " VALUES (NULL, ?, ?, ?, ?)";
-        SQLiteStatement sqLiteStatement = database.compileStatement(sql);
-        sqLiteStatement.clearBindings();
-        sqLiteStatement.bindString(1, name);
-        sqLiteStatement.bindDouble(2, Double.valueOf(price));
-        sqLiteStatement.bindString(3, description);
-        sqLiteStatement.bindLong(4, Long.valueOf(purchased ? 1 : 0));
-        long result = sqLiteStatement.executeInsert();
-        database.close();
-        return result != -1;
-    }
-    //    get data from database table and column data
-    public Cursor getItemById(int id){
-        SQLiteDatabase database = getWritableDatabase();
-        String sql = "SELECT * FROM " + ITEMS_TABLE_NAME + " WHERE " + Col1 + " = ?";
-        return database.rawQuery(sql, new String[]{String.valueOf(id)});
-    }
-    //    Get all data from database
-    public Cursor getAllItems() {
-        SQLiteDatabase database = getWritableDatabase();
-        String sql = "SELECT * FROM " + ITEMS_TABLE_NAME;
-        return database.rawQuery(sql, null);
-    }
-    //    Edit item method
-    public Boolean updateItem(int id,
-                              String name,
-                              double price,
-                              String description,
-                              boolean purchased,
-                              String image){
-        SQLiteDatabase database = getWritableDatabase();
+
+    public void insertItem(String name, double price, String description, byte[] image) {
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Col2, name);
-        contentValues.put(Col3, price);
-        contentValues.put(Col4, description);
-        contentValues.put(Col5, image);
-        contentValues.put(Col6, purchased);
-        int result = database.update(ITEMS_TABLE_NAME, contentValues, Col1 + " = ?",
-                new String[]{String.valueOf(id)});
-        Log.d("databaseHelper: ", "result" + result);
-        database.close();
-        return result != -1;
+        contentValues.put(COLUMN_NAME, name);
+        contentValues.put(COLUMN_PRICE, price);
+        contentValues.put(COLUMN_DESCRIPTION, description);
+        contentValues.put(COLUMN_IMAGE, image);
+        db.insert(TABLE_NAME, null, contentValues);
     }
-    //delete item method
-    public void deleteItem(long id){
-        SQLiteDatabase database = getWritableDatabase();
-        database.delete(ITEMS_TABLE_NAME, Col1 + " = ?",
+
+    public Cursor getAllItems() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+    }
+
+    // Method to mark item as purchased or not purchased
+    public void markItemAsPurchased(long id, boolean purchased) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_PURCHASED, purchased ? 1 : 0);
+        db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{String.valueOf(id)});
+    }
+
+    public Cursor getItemById(long id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(TABLE_NAME, null, COLUMN_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null);
+    }
+
+    public boolean updateItem(long id, String name, double price, String description, byte[] image) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_NAME, name);
+        contentValues.put(COLUMN_PRICE, price);
+        contentValues.put(COLUMN_DESCRIPTION, description);
+        contentValues.put(COLUMN_IMAGE, image);
+
+        int affectedRows = db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?",
                 new String[]{String.valueOf(id)});
-        database.close();
+
+        return affectedRows > 0; // Return true if update successful, false otherwise
+    }
+
+    public void deleteItem(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, COLUMN_ID + " = ?", new String[]{String.valueOf(id)});
     }
 }

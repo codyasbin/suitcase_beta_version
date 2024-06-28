@@ -1,43 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp"
-    android:background="#F44336"
-    tools:context=".Add_Items">
+    android:background="#F44336">
 
-    <!-- Add Item CircleImageView -->
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Items"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:layout_marginBottom="16dp" />
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/add_img"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/add"
-            app:civ_border_width="2dp"
-            app:civ_border_color="@color/black"
-            android:layout_marginBottom="24dp" />
-
+    <!-- Edit Item CircleImageView -->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/edit_item_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/add"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/black"
+        android:layout_marginBottom="24dp" />
 
     <!-- CardView for Input Fields -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="20dp">
 
@@ -47,9 +32,9 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Add Item Inputs -->
+            <!-- Edit Item Inputs -->
             <EditText
-                android:id="@+id/add_item_name"
+                android:id="@+id/edit_item_name"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:hint="Enter Item Name"
@@ -61,20 +46,20 @@
                 android:layout_marginBottom="12dp" />
 
             <EditText
-                android:id="@+id/add_item_price"
+                android:id="@+id/edit_item_price"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:hint="Enter Item Price"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="#F44336"
                 android:padding="12dp"
                 android:layout_marginBottom="12dp" />
 
             <EditText
-                android:id="@+id/add_item_description"
+                android:id="@+id/edit_item_description"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:hint="Enter Item Description"
@@ -84,22 +69,21 @@
                 app:boxStrokeColor="#F44336"
                 android:padding="12dp"
                 android:layout_marginBottom="24dp" />
-            <!-- Add Item Button -->
+
+            <!-- Update Button -->
             <Button
-                android:id="@+id/buttonAdd"
+                android:id="@+id/buttonUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add Item"
+                android:text="Update Item"
                 android:textSize="20sp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:backgroundTint="#F44336"
                 android:padding="12dp"
-                android:elevation="4dp"
-                android:layout_marginTop="24dp" />
+                android:elevation="4dp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
 
 </LinearLayout>
